@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>显示所有图片</title>
+<style type="text/css">
+
+.toplnk:link {color:#000; text-decoration:none;}
+.toplnk:active {color:#000; text-decoration:none;}
+.toplnk:visited {color:#000; text-decoration:none;}
+.toplnk:hover {color:#000; text-decoration:none;}
+
+.top{
+   overflow:hidden;
+   text-overflow:ellipsis;
+   display:-webkit-box;
+   -webkit-line-clamp:2;
+   -webkit-box-orient:vertical;
+}
+
+.lnk{
+   float:left;
+}
+
+</style>
+</head>
+<body>
+{% for phototextmap in phototextmap_list %}
+{% for text in text_list %} 
+{% for photo in photo_list %} 
+{% if text.text_title == phototextmap.PhotoTextMap_texttitle and phototextmap.PhotoTextMap_phototype == '0001' and phototextmap.PhotoTextMap_phototitle == photo.title %}
+<a href="/example1/showmore/{{phototextmap.PhotoTextMap_phototitle}}/"><img src="{{ photo.get_thumbnail_url}}" class="lnk"></a>
+<a href="/example1/showmore/{{phototextmap.PhotoTextMap_phototitle}}/" class="toplnk">{{ text.text_title }}</a>
+<a href="/example1/showmore/{{phototextmap.PhotoTextMap_phototitle}}/" class="toplnk"><p class="top">{{text.text_content}}</p></a>                      
+          
+<br>
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endfor %}
+</body>
+</html>

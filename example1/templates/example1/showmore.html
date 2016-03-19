@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>显示详细</title>
+<style type="text/css">
+
+.coo{
+     text-align:center;
+}
+
+.pot{
+    word-wrap:break-word;
+    text-align:justify;
+    font-size:16px;
+}
+
+</style>
+</head>
+<body>
+{% if t %} 
+{% for photo in photo_list %}
+{% for phototextmap in phototextmap_list %} 
+{% if phototextmap.PhotoTextMap_texttitle == t.text_title and phototextmap.PhotoTextMap_phototype == "0000" and phototextmap.PhotoTextMap_phototitle == photo.title %}
+<div class="coo">
+<h3>{{t.text_title}}</h3>
+<img src="{{photo.get_display_url}}">
+<p>{{t.photo_name}}</p>
+</div>
+<div class="pot"><pre>{{t.text_content}}</pre></div>
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endif %}
+</body>
+</html>
